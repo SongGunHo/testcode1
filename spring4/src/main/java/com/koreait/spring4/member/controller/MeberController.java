@@ -9,12 +9,14 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -62,24 +64,46 @@ public class MeberController {
     }
 
     @GetMapping("/login")
-    public String login (@ModelAttribute RequestLogin form , Errors errors , Model model){
+    public String login (@ModelAttribute RequestLogin form , Errors errors , Model model) {
         commonProcess("login", errors);
 
         List<String> findErrors = form.getFieldError();
-        if(findErrors != null){
-            findErrors.forEach(s->{
+        if (findErrors != null) {
+            findErrors.forEach(s -> {
                 String[] value = s.split("_");// 문자열을 큭정 구분자를 기준으로 나누어 리스트로 반환
                 errors.rejectValue(value[0], value[1]);
 
             });
 
             List<String> globalErrors = form.getGlobalError();
-            if()
+            if (globalErrors != null) {
+                globalErrors.forEach(errors::reject);
+            }
+            /*검증 실패*/
+
+            return utils.tpl("member/login");
 
 
         }
-
     }
+
+    @GetMapping("/passdword")
+    private void commonProcess(String mode, Model model){
+        mode = StringUtils.hasText(mode) ? mode : "join";
+        String pageTitle ="";
+        List<String> s = new ArrayList<>();
+        List<String> a = new ArrayList<>();
+
+        if(mode.equals("join")){ // 로그인 공톻커리
+            s.add("fileMessage");
+            a.add("/member/join");
+            pageTitle = utils.getMessage("회원 가입 ");
+        }else if (mode.equals("login")){
+            pageTitle = utils.getMessage("로그인");
+        }
+    }
+
+
 
 
 

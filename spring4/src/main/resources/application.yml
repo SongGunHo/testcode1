@@ -1,0 +1,37 @@
+server:
+  prot: 3000
+  servlet:
+    session.cookie.name: b8a5f3fb
+
+  spring:
+    #fiyway
+    flyway:
+      enabled: true
+      baselineOnMigrate: true
+
+
+  # 데이터 베이스 설정
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://%{db.url}
+    username: ${{db.username}
+    password: ${db.password}
+
+  #타임 리프 설정
+  thymeleaf:
+    cache: true
+    prefix: file:src/main/resource/templates/
+
+  # 파일 업로드 설정
+  file:
+    upload:
+      url: ${file.url}
+      path: ${file.path}
+
+
+  # 파이썬 설정
+
+  python:
+    path:
+      base: ${python.base}
+      trend: ${python.trend}
