@@ -7,5 +7,6 @@ import org.springframework.stereotype.Service;
 
 public class JoinValidator {
     public void validate(@Valid RequestJoin form, Error error) {
+        
     }
 }
