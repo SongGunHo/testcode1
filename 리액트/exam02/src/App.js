@@ -1,24 +1,19 @@
-import logo from './logo.svg';
-import './App.css';
+//import { Fragment } from 'react';
+
+// function App() {
+//   let name;
+//   name = name ?? '기본 이름';
+
+//   ///return name ? <h1>{name}님, 반갑습니다.</h1> : '';
+//   return name && <h1 className="greet">{name}님, 반값습니다.</h1>;
+// }
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>반갑습니다.</h1>
+      <h2>안녕하세요.</h2>
+    </>
   );
 }
 
